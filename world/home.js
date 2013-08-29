@@ -2,6 +2,7 @@ room('home', {
   description: "You are in the Lab For the Recently Possible.\
     A large table sits in the middle of the room around which \
     geeks sit hard at work on some kind of text adventure...",
+  image: "https://si0.twimg.com/profile_images/2346548968/v670k756qsd1e3hegurf.png",
   exits: { west: 'beige', east: 'magnolia' },
   items: []});
 

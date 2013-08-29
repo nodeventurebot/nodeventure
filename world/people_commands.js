@@ -1,6 +1,9 @@
 handler('enterRoom', function (player, room, game) {
-  console.log('enter room!');
   room.broadcast(player.name + ' enters the room', player);
+  player.display.reset();
+  if (room.image) {
+    player.display.show(room.image, 'room', {width: "100%", height: "100%"});
+  }
   game.emitEvent("enterRoom", player.name, player, room);
 
   _.each(room.items, function (item) {
@@ -14,7 +17,7 @@ handler("describeItem:*", function (game, player, item) {
 
 handler('leaveRoom', function (player, room, game) {
   room.broadcast(player.name + ' leaves the room', player);
-})
+});
 
 command('say', function (rest, player, game) {
   player.getCurrentRoom().broadcast(player.name + ' says: ' + rest.trim(), player);
