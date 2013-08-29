@@ -71,7 +71,6 @@ command('i', "Display a list of all the items you're carrying.", function (rest,
 command('use', 'Example: use lemon',function (rest, player, item) {
   player.write("Can't use " + rest);
 });
-<<<<<<< HEAD
 
 itemCommand('use','gemerald', function(rest, player, item) {
     player.write('you used ' + item.name);
@@ -101,5 +100,3 @@ itemCommand('drink','rum', function (rest, player, item) {
   player.getCurrentRoom().broadcast(player.name + ' drank some disgusting ' + item.name, player);
   player.write({'effect': 'toggleBlur'});
 });
-=======
->>>>>>> 2153c8e7a1f940eed3bfacc38d5201a388241670
