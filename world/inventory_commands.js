@@ -1,23 +1,23 @@
 command('get', 'Pick up an item from the current room.', function (rest, player, game) {
   var item = player.getCurrentRoom().getItem(rest);
-    if (item) {
+  if (item) {
+    if (item.gettable !== false) {
       game.emitEvent("get", item.name, player, item);
     } else {
-      player.write("Sorry, the item: " + rest + ", is not here.");
+      player.write("You can not get the " + rest);
     }
+  } else {
+    player.write("Sorry, the item: " + rest + ", is not here.");
+  }
 });
 
 event('get', '*', function (game, player, item) {
-  if (item.gettable !== false) {
   // remove item from room & add to player inventory
-    player.write("You pick up the " + item.name);
-    player.getCurrentRoom().broadcast(player.name + ' picks up the ' + item.name, player);
-    player.getCurrentRoom().items = _.without(player.getCurrentRoom().items, item);
-    game.emit("invget:"+item.name);
-    player.inventory.push(item);
-  } else {
-    player.write("You can not get the " + rest);
-  }
+  player.write("You pick up the " + rest);
+  player.getCurrentRoom().broadcast(player.name + ' picks up the ' + rest, player);
+  player.getCurrentRoom().items = _.without(player.getCurrentRoom().items, item);
+  game.emit("invget:"+item.name);
+  player.inventory.push(item);
 });
 
 command('take', function(rest, player, game) {
@@ -72,6 +72,7 @@ command('i', "Display a list of all the items you're carrying.", function (rest,
 command('use', 'Example: use lemon',function (rest, player, item) {
   player.write("Can't use " + rest);
 });
+<<<<<<< HEAD
 
 itemCommand('use','gemerald', function(rest, player, item) {
     player.write('you used ' + item.name);
@@ -101,3 +102,5 @@ itemCommand('drink','rum', function (rest, player, item) {
   player.getCurrentRoom().broadcast(player.name + ' drank some disgusting ' + item.name, player);
   player.write({'effect': 'toggleBlur'});
 });
+=======
+>>>>>>> 2153c8e7a1f940eed3bfacc38d5201a388241670

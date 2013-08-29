@@ -11,17 +11,8 @@ body {
   color:lime;
   margin: 0;
 }
-header {
-	background-color: lime;
-	color: black;
-	padding: 20px 10px;
-	position: fixed;
-	top:0;
-  left:0;
-  right:0;
-}
 h1{
-	margin: 0;
+  margin: 0;
 }
 
 h1 a, h1 a:visited {
@@ -32,6 +23,15 @@ h1 a, h1 a:visited {
   #output {
   	margin: 6em 0 8em 0;
   	padding:0 20px;
+        width: 50%;
+        float: left;
+  }
+
+  #display iframe {
+      width: 50%;
+      height: 100%;
+      position: fixed;
+      left: 50%;
   }
 
   #welcome {
@@ -42,10 +42,10 @@ h1 a, h1 a:visited {
 
   pre {
     font-size: 1.2em;
-    white-space: pre-wrap;       
-    white-space: -moz-pre-wrap;  
-    white-space: -pre-wrap;      
-    white-space: -o-pre-wrap;    
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
     word-wrap: break-word;
   }
 
@@ -59,10 +59,11 @@ h1 a, h1 a:visited {
 
 /* input area */
   #input {
+    box-sizing: border-box;
     position:fixed;
     bottom:0;
     left:0;
-    right:0;
+    width: 50%;
     background:#333;
     padding:10px 2.5% 20px 2.5%;
   }
@@ -95,67 +96,16 @@ h1 a, h1 a:visited {
     cursor: pointer;
   }
 
-
-/* effects */
-  .blurry {
-    color: transparent;
-    text-shadow: 0 0 3px rgba(0, 255, 0, 1);
-    -webkit-transition-property:color, text-shadow;  
-    -webkit-transition-duration: 3s, 3s;  
-    -webkit-transition-timing-function: ease-out, ease-in;
-    -moz-transition-property:color, text-shadow;  
-    -moz-transition-duration: 3s, 3s;  
-    -moz-transition-timing-function: ease-out, ease-in;  
-  }
-
-  .reverse-gravity {
-    -webkit-transform:rotate(180deg);
-    -moz-transform:rotate(180deg);
-  }
-
-  .roll {
-    -webkit-transform:rotate(360deg);
-    -moz-transform:rotate(360deg);
-  }
-
-  @-webkit-keyframes attack {
-    0% { -webkit-transform: translate(2px, 1px) rotate(0deg); }
-    10% { -webkit-transform: translate(-1px, -2px) rotate(-1deg); }
-    20% { -webkit-transform: translate(-3px, 0px) rotate(1deg); }
-    30% { -webkit-transform: translate(0px, 2px) rotate(0deg); }
-    40% { -webkit-transform: translate(1px, -1px) rotate(1deg); }
-    50% { -webkit-transform: translate(-1px, 2px) rotate(-1deg); }
-    60% { -webkit-transform: translate(-3px, 1px) rotate(0deg); }
-    70% { -webkit-transform: translate(2px, 1px) rotate(-1deg); }
-    80% { -webkit-transform: translate(-1px, -1px) rotate(1deg); }
-    90% { -webkit-transform: translate(2px, 2px) rotate(0deg); }
-    100% { -webkit-transform: translate(1px, -2px) rotate(-1deg); }
-  }
-
-  .attack {
-    -webkit-animation-name: attack;
-    -webkit-animation-duration: 0.8s;
-    -webkit-transform-origin:50% 50%;
-    -webkit-animation-iteration-count: 1;
-    -webkit-animation-timing-function: linear;
-  }
-
-  .mirror {
-    -webkit-transform: scale(-1, 1);
-    -mozilla-transform: scale(-1, 1);
-    transform: scale(-1, -1);
-  }
-
-  @-webkit-keyframes blinker {  
+  @-webkit-keyframes blinker {
     from { opacity: 1.0; }
     to { opacity: 0.0; }
   }
 
   .error {
-    -webkit-animation-name: blinker;  
-    -webkit-animation-iteration-count: 10;  
+    -webkit-animation-name: blinker;
+    -webkit-animation-iteration-count: 10;
     -webkit-animation-timing-function: cubic-bezier(1.0,0,0,1.0);
-    -webkit-animation-duration: 0.5s; 
+    -webkit-animation-duration: 0.5s;
   }
 
 

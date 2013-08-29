@@ -1,5 +1,5 @@
 var yeti = character('yeti', {
-  location: 'switzerland',
+  location: 'magnolia',
   description: 'half man, half monkey,half bear and all yeti. He seems to like the snow.'
 });
 
