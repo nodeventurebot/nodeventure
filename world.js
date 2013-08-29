@@ -79,7 +79,7 @@ function WorldModule(game) {
           room = game.rooms[spawn.room];
       if (t-spawn.lastSpawn > spawn.spawnFrequency) {
         spawn.lastSpawn = t;
-        if (!room.getItem(spawn.item.name)) {
+        if (room && !room.getItem(spawn.item.name)) {
           var item = _.clone(spawn.item);
           room.items.push(item);
           game.emit('spawn', room, item);

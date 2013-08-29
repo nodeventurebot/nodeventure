@@ -11,7 +11,7 @@ command('get', 'Pick up an item from the current room.', function (rest, player,
   }
 });
 
-event('get', '*', function (game, player, item) {
+handler('get:*', function (game, player, item) {
   // remove item from room & add to player inventory
   player.write("You pick up the " + rest);
   player.getCurrentRoom().broadcast(player.name + ' picks up the ' + rest, player);
@@ -34,7 +34,7 @@ command('drop', 'Leave an item from your inventory in the current room.', functi
   });
 });
 
-event("drop", "*", function (game, player, item) {
+handler("drop:*", function (game, player, item) {
   // remove item from player inventory & add to current room
   var rest = item.name;
   player.write("You drop the " + rest);
@@ -44,12 +44,11 @@ event("drop", "*", function (game, player, item) {
   game.emit("invdrop:"+item.name, rest, player, game);
 });
 
-event("drop", "mirror", function (game, player, item) {
+handler("drop:mirror", function (game, player, item) {
   var rest = item.name;
   player.write("You drop the " + rest + " and it smashes into a million pieces");
   player.getCurrentRoom().broadcast(player.name + ' drops the ' + rest + " and it smashes into a million pieces", player);
   player.inventory = _.without(player.inventory, item);
-  player.getCurrentRoom().items.push(item);
   game.emit("invdrop:"+item.name, rest, player, game);
   preventDefault();
 });
