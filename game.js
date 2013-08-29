@@ -30,7 +30,7 @@ _.extend(Game.prototype, {
     if (!(name in this.players)) {
       this.players[name] = new Player(this, name);
       this.emit('joinPlayer', this.players[name], this);
-    } 
+    }
     return this.players[name];
   },
   getPlayer: function (name) {
@@ -109,6 +109,18 @@ _.extend(Game.prototype, {
     var args = _.toArray(arguments);
     args.unshift('all');
     events.EventEmitter.prototype.emit.apply(this, args);
+  },
+
+  preventDefault: function () {
+    this._allowDefault = false;
+  },
+
+  emitEvent: function (verbId, objectId, subject, object) {
+    this._allowDefault = true;
+    this.emit(verbId + ":" + objectId, this, subject, object);
+    if (this._allowDefault) {
+      this.emit(verbId + ":*", this, subject, object);
+    }
   }
 });
 

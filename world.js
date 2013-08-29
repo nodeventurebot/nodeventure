@@ -64,6 +64,14 @@ function WorldModule(game) {
     _this._spawns[room + ':' + name] = {room: room, lastSpawn: 0, spawnFrequency: spawnFrequency, item: item};
   };
 
+  this.event = function (eventName, subjectId, eventHandler) {
+    _this.handler(eventName + ":" + subjectId, eventHandler);
+  };
+
+  this.preventDefault = function () {
+    game.preventDefault();
+  };
+
   // Set up a tick handler to check for spawns
   this.handler('tick', function () {
     _.each(_this._spawns, function (spawn) {
@@ -79,7 +87,7 @@ function WorldModule(game) {
       }
     });
   });
-  
+
 }
 
 util.inherits(WorldModule, events.EventEmitter);
