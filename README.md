@@ -29,7 +29,11 @@ ARTISTS: Bring beauty to the world…
 PROGRAMMERS: Extend our super simple game engine; maybe add interactions between players and other niceties.  
 EVERYONE: Help us create a new world!
 
+[![screenshot][screenshot]](http://nodeventure.asyncjs.com)
+
+
 [banner]: https://f.cloud.github.com/assets/116809/1052357/e454578a-10db-11e3-8229-1a45d5818f34.png
+[screenshot]: https://f.cloud.github.com/assets/116809/1052462/cdd3386c-10dd-11e3-956f-d90c173e410a.png
 [text-adventure]: https://en.wikipedia.org/wiki/Interactive_fiction
 [async]: http://asyncjs.com
 [event-1]: http://asyncjs.com/nodeventure/
