@@ -1,12 +1,15 @@
 handler('enterRoom', function (player, room, game) {
-  console.log('enter room!');
   room.broadcast(player.name + ' enters the room', player);
+  player.display.reset();
+  if (room.image) {
+    player.display.show(room.image, 'room', {width: "100%", height: "100%"});
+  }
   game.emitEvent("enterRoom", player.name, player, room);
-})
+});
 
 handler('leaveRoom', function (player, room, game) {
   room.broadcast(player.name + ' leaves the room', player);
-})
+});
 
 command('say', function (rest, player, game) {
   player.getCurrentRoom().broadcast(player.name + ' says: ' + rest.trim(), player);
