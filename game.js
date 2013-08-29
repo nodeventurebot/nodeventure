@@ -17,6 +17,8 @@ function Game() {
   this.players = {};
   this.commands = {};
   setInterval(function () {_this.emit('tick');}, 1000);
+  
+  this.display = new WorldDisplay(this);
 }
 // We inherit from node's event emmiter to allow events on the game,
 // world modules listen to them via the Fascade in loader.js which
@@ -117,6 +119,8 @@ function Room(game, id) {
   this.id = id;
   this.description = "This is a room";
   this.exits = {};
+  
+  this.display = new RoomDisplay(this);
 }
 
 _.extend(Room.prototype, {
@@ -163,6 +167,8 @@ function Player(game, name) {
   this.name = name;
   this.inventory = [];
   this.health = 100;
+
+  this.display = new PlayerDisplay(this);
 }
 util.inherits(Player, events.EventEmitter);
 
@@ -206,5 +212,57 @@ _.extend(Player.prototype, {
   },
   isDead: function () {
     return this.health <= 0;
+  }
+});
+
+
+function BaseDisplay() {
+}
+
+_.extend(BaseDisplay.prototype, {
+  eval: function (code) {
+    if (_.isFunction(code)) {
+      code = "(" + code.toString() + ")(display)";
+    }
+    this._command("eval", [code]);
+  }
+});
+
+_.each(["show", "reset"], function (command) {
+  BaseDisplay.prototype[command] = function () {
+    this._command(command, _.toArray(arguments));
+  };
+});
+
+function WorldDisplay(game) {
+  this._game = game;
+}
+util.inherits(WorldDisplay, BaseDisplay);
+
+_.extend(WorldDisplay.prototype, {
+  _command: function (cmd, args) {
+    this._game.broadcast({display: {command: cmd, arguments: args}});
+  }
+});
+
+function RoomDisplay(room) {
+  this._room = room;
+}
+util.inherits(RoomDisplay, BaseDisplay);
+
+_.extend(RoomDisplay.prototype, {
+  _command: function (cmd, args) {
+    this._room.broadcast({display: {command: cmd, arguments: args}});
+  }
+});
+
+function PlayerDisplay(player) {
+  this._player = player;
+}
+util.inherits(PlayerDisplay, BaseDisplay);
+
+_.extend(PlayerDisplay.prototype, {
+  _command: function (cmd, args) {
+    this._player.write({display: {command: cmd, arguments: args}});
   }
 });
