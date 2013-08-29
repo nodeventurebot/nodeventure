@@ -2,7 +2,15 @@ handler('enterRoom', function (player, room, game) {
   console.log('enter room!');
   room.broadcast(player.name + ' enters the room', player);
   game.emitEvent("enterRoom", player.name, player, room);
-})
+
+  _.each(room.items, function (item) {
+    game.emitEvent("describeItem", item.name, player, item);
+  });
+});
+
+handler("describeItem:*", function (game, player, item) {
+
+});
 
 handler('leaveRoom', function (player, room, game) {
   room.broadcast(player.name + ' leaves the room', player);
