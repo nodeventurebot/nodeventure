@@ -8,6 +8,7 @@ room('home', {
 room('beige', {
   description: "This room is daubed in beige. You start feeling sleepy.",
   exits: { east: 'home' },
+  items: ['paint']
 });
 
 room('magnolia', {
