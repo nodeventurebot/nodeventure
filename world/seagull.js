@@ -6,7 +6,7 @@ var seagull = character('seagull', {
 handler('tick', function () {
   var room = seagull.getCurrentRoom(),
       presentPlayers = room.getPlayers(),
-      vitcim;
+      victim;
 
   if(Math.random() * 16 < 1){
 
