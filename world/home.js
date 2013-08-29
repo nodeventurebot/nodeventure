@@ -8,7 +8,7 @@ room('home', {
 room('beige', {
   description: "This room is daubed in beige. You start feeling sleepy.",
   exits: { east: 'home' },
-  items: ['paint']
+  items: []
 });
 
 room('magnolia', {
@@ -16,13 +16,13 @@ room('magnolia', {
   exits: { west: 'home' },
 });
 
-item('brush', 'brush', 60, {
+item('beige', 'brush', 60, {
   short: 'a brush',
   name: 'brush',
   description: 'A brush. it is branded with a \'B&Q\' logo. There is beige paint on it'
 });
 
-item('paint', 'paint', 60, {
+item('beige', 'paint', 60, {
   short: 'a pot of paint',
   name: 'paint',
   description: 'A pot of beige paint. it has been opened.'
