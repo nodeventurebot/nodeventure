@@ -13,7 +13,7 @@ command('clickheels', function (rest, player, game) {
   player.getCurrentRoom().broadcast(player.name + ' clicks their heels', player);
   if (player.godmotherPresent) {
     player.health = 100;
-    player.getCurrentRoom().broadcast(player.name + "'s fairy godmother: Ok, but don't get yourself lost again!");
+    player.getCurrentRoom().broadcast(player.name + "'s hairy fairy godmother: Ok, but don't get yourself lost again!");
     player.setCurrentRoom('home');
     player.execute('look');
     player.godmotherPresent = false;
