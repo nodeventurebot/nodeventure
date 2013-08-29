@@ -2,18 +2,22 @@ command('get', 'Pick up an item from the current room.', function (rest, player,
   var item = player.getCurrentRoom().getItem(rest);
   if (item) {
     if (item.gettable !== false) {
-      // remove item from room & add to player inventory
-      player.write("You pick up the " + rest);
-      player.getCurrentRoom().broadcast(player.name + ' picks up the ' + rest, player);
-      player.getCurrentRoom().items = _.without(player.getCurrentRoom().items, item);
-      game.emit("invget:"+item.name);
-      player.inventory.push(item);
+      game.emitEvent("get", item.name, player, item);
     } else {
       player.write("You can not get the " + rest);
     }
   } else {
     player.write("Sorry, the item: " + rest + ", is not here.");
   }
+});
+
+event('get', '*', function (game, player, item) {
+  // remove item from room & add to player inventory
+  player.write("You pick up the " + rest);
+  player.getCurrentRoom().broadcast(player.name + ' picks up the ' + rest, player);
+  player.getCurrentRoom().items = _.without(player.getCurrentRoom().items, item);
+  game.emit("invget:"+item.name);
+  player.inventory.push(item);
 });
 
 command('take', function(rest, player, game) {
@@ -23,16 +27,31 @@ command('take', function(rest, player, game) {
 command('drop', 'Leave an item from your inventory in the current room.', function (rest, player, game) {
   _.map(player.inventory, function(item) {
     if (item.name === rest) {
-      // remove item from player inventory & add to current room
-      player.write("You drop the " + rest);
-      player.getCurrentRoom().broadcast(player.name + ' drops the ' + rest, player);
-      player.inventory = _.without(player.inventory, item);
-      player.getCurrentRoom().items.push(item);
-        game.emit("invdrop:"+item.name, rest, player, game);
+      game.emitEvent("drop", item.name, player, item);
     } else {
       player.write("The item: " + rest + ", is not in your inventory.");
     }
   });
+});
+
+event("drop", "*", function (game, player, item) {
+  // remove item from player inventory & add to current room
+  var rest = item.name;
+  player.write("You drop the " + rest);
+  player.getCurrentRoom().broadcast(player.name + ' drops the ' + rest, player);
+  player.inventory = _.without(player.inventory, item);
+  player.getCurrentRoom().items.push(item);
+  game.emit("invdrop:"+item.name, rest, player, game);
+});
+
+event("drop", "mirror", function (game, player, item) {
+  var rest = item.name;
+  player.write("You drop the " + rest + " and it smashes into a million pieces");
+  player.getCurrentRoom().broadcast(player.name + ' drops the ' + rest + " and it smashes into a million pieces", player);
+  player.inventory = _.without(player.inventory, item);
+  player.getCurrentRoom().items.push(item);
+  game.emit("invdrop:"+item.name, rest, player, game);
+  preventDefault();
 });
 
 command('inventory', "Display a list of all the items you're carrying.", function (rest, player, game) {
@@ -53,3 +72,35 @@ command('i', "Display a list of all the items you're carrying.", function (rest,
 command('use', 'Example: use lemon',function (rest, player, item) {
   player.write("Can't use " + rest);
 });
+<<<<<<< HEAD
+
+itemCommand('use','gemerald', function(rest, player, item) {
+    player.write('you used ' + item.name);
+});
+
+itemCommand('use','sword', function(rest, player, item) {
+    player.write('you used ' + item.name);
+});
+
+itemCommand('use', 'jetpack', function(rest, player, item){
+  player.write('You put the jetpack on and press the button marked \'LAUNCH\'');
+  player.getCurrentRoom().broadcast(player.name + ' used the jetpack and disappeared to parts unknown!', player);
+  var rooms = _.keys(game.rooms),
+  room = rooms[Math.floor(Math.random() * rooms.length)];
+  player.setCurrentRoom(room);
+  player.write('You landed in a strange new place...');
+  player.execute('look');
+});
+
+itemCommand('use','lemon', function (rest, player, item) {
+  player.write('you make lemonade');
+  player.getCurrentRoom().broadcast(player.name + ' makes lemonade', player);
+});
+
+itemCommand('drink','rum', function (rest, player, item) {
+  player.write('you drank some disgusting ' + item.name);
+  player.getCurrentRoom().broadcast(player.name + ' drank some disgusting ' + item.name, player);
+  player.write({'effect': 'toggleBlur'});
+});
+=======
+>>>>>>> 2153c8e7a1f940eed3bfacc38d5201a388241670
