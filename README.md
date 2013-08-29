@@ -1,5 +1,4 @@
-Nodeventure
-===========
+[![Nodeventure][banner]](http://nodeventure.asyncjs.com)
 
 A multiplayer [text adventure][text-adventure], created together at [Async][async] in Brighton at the [Lab for the Recently Possible][l4rp]. Part of the [Brighton Digital Festival][bdf].
 
@@ -30,7 +29,7 @@ ARTISTS: Bring beauty to the world…
 PROGRAMMERS: Extend our super simple game engine; maybe add interactions between players and other niceties.  
 EVERYONE: Help us create a new world!
 
-
+[banner]: https://f.cloud.github.com/assets/116809/1052357/e454578a-10db-11e3-8229-1a45d5818f34.png
 [text-adventure]: https://en.wikipedia.org/wiki/Interactive_fiction
 [async]: http://asyncjs.com
 [event-1]: http://asyncjs.com/nodeventure/
