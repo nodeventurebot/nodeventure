@@ -5,7 +5,19 @@ room('switzerland', {
       {short: 'a lemon', name: 'lemon', description: 'A small lemon, dressed in a woolly hat and scarf. His name is Lawrence.'},
       {short: 'a pair of skis', name: 'skis', description: 'A pair of red and white skis.'}
       ]
-  });
+});
+
+event('enterRoom', 'switzerland', function (world, room, player) {
+  player.write("You enter!");
+  player.getCurrentRoom().broadcast("Someone enters", player);
+  // player.display.showImage();
+  // player.display.eval(function (div) {});
+});
+
+event('get', 'jetpack', function (world, item, player) {
+  player.getCurrentRoom().broadcast("An ominous rumbling can be heard");
+  preventDefault();
+});
 
 room('pine-tree', {
     description: "You are up inside the branches of a huge pine tree. Amongst the swathes of pine needles are a family of huge, Italian-Swiss speaking birds. They seem pre-occupied with feeding their babies. You can see a lot of snow below.",
@@ -21,7 +33,11 @@ room('swiss-slope', {
     items: []
 });
 
-item('swiss-slope', 'jetpack', 120, {short: 'a jetpack', name: 'jetpack', description: 'it looks like a broken jetpack'});
+item('swiss-slope', 'jetpack', 120, {
+  short: 'a jetpack',
+  name: 'jetpack',
+  description: 'it looks like a broken jetpack',
+});
 
 item('swiss-slope', 'water', 0, {short: 'water', name: 'water', description: 'Some water from a Swiss lake.'});
 

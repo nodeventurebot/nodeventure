@@ -1,6 +1,7 @@
 handler('enterRoom', function (player, room, game) {
   console.log('enter room!');
   room.broadcast(player.name + ' enters the room', player);
+  game.emitEvent("enterRoom", player.name, player, room);
 })
 
 handler('leaveRoom', function (player, room, game) {
