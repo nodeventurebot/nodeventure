@@ -1,42 +1,43 @@
-Text Adventure Lab @ L4RP
-=========================
+[![Nodeventure][banner]](http://nodeventure.asyncjs.com)
 
-A multiplayer text adventure that we created together on the Text Adventure Lab Day at the L4RP (http://l4rp.com). You can play it at:
+A multiplayer [text adventure][text-adventure], created together at [Async][async] in Brighton at the [Lab for the Recently Possible][l4rp]. Part of the [Brighton Digital Festival][bdf].
 
-http://nv.l4rp.com
-
-To Run
-------
-
-```
-git clone https://github.com/l4rp/nodeventure.git
-cd nodeadventure
-npm install
-node server.js
-open http://localhost:8989
-```
+You can play it at: http://nodeventure.asyncjs.com
 
 
-Details off the day
-------------------
+Getting started
+---------------
 
-Friday, 22nd June 2012. 10am - 6pm
+See the [Nodeventure wiki][wiki].
 
-Free to attend, please come along!
 
-http://l4rp.com/
+Details for the day
+-------------------
 
-http://lanyrd.com/2012/l4rp-ta/
+Two hack nights: on [12th September][event-1] and [26th September][event-2] 2013, from 7.15pm.
 
-Come help create a multi-player Text Adventure. We'll start with text and a storyline, and then maybe add pictures to the scenes.
+Come help create a multi-player Text Adventure. We’ll start with text and a storyline, and then add pictures to the scenes.
 
-Non-programmers are welcome - we need ideas, words, artwork, design and all sorts of creativity...
+Non-programmers are welcome - we need ideas, words, artwork, design and all sorts of creativity…
 
-And programmers - we'll be using JavaScript and Node.js, so come and lend your closures and variables to the task.It's fine if you don't know Node.js or if you've never coded before; come along and learn a bit with the rest of us.
+And programmers - we’ll be using JavaScript and Node.js, so come and lend your loops to the task.
 
-A chance to work with others on a creative group project. It's great if you can come for the whole day, but feel free to pop in at any time.
+This a chance to work with others on a creative group project. There are two sessions: 12th Sept and 26th Sept. Feel free to come to both or either.
 
- - WRITERS: Write inspiring descriptions of rooms, items and beings...     
- - ARTISTS: Bring beauty to the world...
- - PROGRAMMERS: Extend our super simple game engine; maybe add interactions between players and other niceties.
- - EVERYONE: Help us create a new world! Free, as in entry.
+WRITERS: Write inspiring descriptions of rooms, items and beings…  
+ARTISTS: Bring beauty to the world…  
+PROGRAMMERS: Extend our super simple game engine; maybe add interactions between players and other niceties.  
+EVERYONE: Help us create a new world!
+
+[![screenshot][screenshot]](http://nodeventure.asyncjs.com)
+
+
+[banner]: https://f.cloud.github.com/assets/116809/1052357/e454578a-10db-11e3-8229-1a45d5818f34.png
+[screenshot]: https://f.cloud.github.com/assets/116809/1052462/cdd3386c-10dd-11e3-956f-d90c173e410a.png
+[text-adventure]: https://en.wikipedia.org/wiki/Interactive_fiction
+[async]: http://asyncjs.com
+[event-1]: http://asyncjs.com/nodeventure/
+[event-2]: http://asyncjs.com/nodeventure2/
+[l4rp]: http://L4RP.com
+[bdf]: http://brightondigitalfestival.co.uk
+[wiki]: https://github.com/asyncjs/nodeventure/wiki

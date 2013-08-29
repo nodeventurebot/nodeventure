@@ -39,7 +39,7 @@ command('exits',function (rest, player, game) {
   var exits = Object.keys(player.getCurrentRoom().exits);
   player.write("Exits: " + exits.join(","));
 });
- 
+
 command('teleport', '"teleport <player>" teleports you to the location of another player', function (rest, player, game) {
   var destplayer = game.getPlayer(rest), destination;
   if (destplayer) {

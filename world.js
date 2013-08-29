@@ -79,7 +79,6 @@ function WorldModule(game) {
       }
     });
   });
-  
 }
 
 util.inherits(WorldModule, events.EventEmitter);
