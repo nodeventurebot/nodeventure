@@ -1,0 +1,5 @@
+---
+exits:
+  west: home
+---
+This room is daubed in magnolia. You stare at it for a while.
