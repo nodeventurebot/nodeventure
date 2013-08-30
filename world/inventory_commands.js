@@ -13,10 +13,11 @@ command('get', 'Pick up an item from the current room.', function (rest, player,
 
 handler('get:*', function (game, player, item) {
   // remove item from room & add to player inventory
-  player.write("You pick up the " + item.name);
-  player.getCurrentRoom().broadcast(player.name + ' picks up the ' + item.name, player);
+  var itemName = item.name;
+  player.write("You pick up the " + itemName);
+  player.getCurrentRoom().broadcast(player.name + ' picks up the ' + itemName, player);
   player.getCurrentRoom().items = _.without(player.getCurrentRoom().items, item);
-  game.emit("invget:"+item.name);
+  game.emit("invget:"+itemName);
   player.inventory.push(item);
 });
 
@@ -24,14 +25,15 @@ command('take', function(rest, player, game) {
   game.execute(player, 'get ' + rest);
 });
 
-command('drop', 'Leave an item from your inventory in the current room.', function (rest, player, game) {
-  _.map(player.inventory, function(item) {
-    if (item.name === rest) {
-      game.emitEvent("drop", item.name, player, item);
-    } else {
-      player.write("The item: " + rest + ", is not in your inventory.");
-    }
+command('drop', 'Leave an item from your inventory in the current room.', function (itemName, player, game) {
+  var item = _.find(player.inventory, function (it) {
+    return itemName === it.name;
   });
+  if (item) {
+    game.emitEvent("drop", itemName, player, item);
+  } else {
+    player.write("The " + itemName + " is not in your inventory.");
+  }
 });
 
 handler("drop:*", function (game, player, item) {

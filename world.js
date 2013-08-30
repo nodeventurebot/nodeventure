@@ -78,7 +78,7 @@ function WorldModule(game) {
     _.each(_this._spawns, function (spawn) {
       var t = (new Date()).getTime()/1000,
           room = game.rooms[spawn.room];
-      if (t-spawn.lastSpawn > spawn.respawnTimer) {
+      if (t - spawn.lastSpawn > spawn.respawnTimer) {
         spawn.lastSpawn = t;
         if (room && !room.getItem(spawn.item.name)) {
           var item = _.clone(spawn.item);
