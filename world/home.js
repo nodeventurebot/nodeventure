@@ -9,12 +9,18 @@ room('home', {
 room('beige', {
   description: "This room is daubed in beige. You start feeling sleepy.",
   exits: { east: 'home' },
-  items: []
+  items: [
+    {
+      short: 'a small mirror',
+      name: 'mirror',
+      description: 'A small and perfectly inadequate mirror'
+    }
+  ]
 });
 
 room('magnolia', {
   description: "This room is daubed in magnolia. You stare at it for a while.",
-  exits: { west: 'home' },
+  exits: { west: 'home' }
 });
 
 item('beige', 'brush', 60, {
@@ -27,4 +33,17 @@ item('beige', 'paint', 60, {
   short: 'a pot of paint',
   name: 'paint',
   description: 'A pot of beige paint. it has been opened.'
+});
+
+handler("drop:mirror", function (game, player, item) {
+  var rest = item.name;
+  player.write("You drop the " + rest + " and it smashes into a million pieces");
+  player.getCurrentRoom().broadcast(player.name + ' drops the ' + rest + " and it smashes into a million pieces", player);
+  player.inventory = _.without(player.inventory, item);
+  game.emit("invdrop:"+item.name, rest, player, game);
+  preventDefault();
+});
+
+handler("describeItem:mirror", function (game, player, item) {
+  player.write("A mirror hangs on the wall");
 });
