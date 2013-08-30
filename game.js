@@ -137,6 +137,7 @@ function Room(game, id) {
   this.description = "This is a room";
   this.image = null;
   this.exits = {};
+  this.items = [];
 
   this.display = new RoomDisplay(this);
 }
