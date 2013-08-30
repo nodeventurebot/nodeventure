@@ -25,14 +25,15 @@ command('take', function(rest, player, game) {
   game.execute(player, 'get ' + rest);
 });
 
-command('drop', 'Leave an item from your inventory in the current room.', function (rest, player, game) {
-  _.map(player.inventory, function(item) {
-    if (item.name === rest) {
-      game.emitEvent("drop", item.name, player, item);
-    } else {
-      player.write("The item: " + rest + ", is not in your inventory.");
-    }
+command('drop', 'Leave an item from your inventory in the current room.', function (itemName, player, game) {
+  var item = _.find(player.inventory, function (it) {
+    return itemName === it.name;
   });
+  if (item) {
+    game.emitEvent("drop", itemName, player, item);
+  } else {
+    player.write("The " + itemName + " is not in your inventory.");
+  }
 });
 
 handler("drop:*", function (game, player, item) {
