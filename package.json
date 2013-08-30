@@ -19,7 +19,9 @@
     "optimist": "0.3.4",
     "trumpet": "0.3.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "yaml-front-matter": "~1.0.3"
+  },
   "optionalDependencies": {},
   "engines": {
     "node": "*"
