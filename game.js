@@ -17,7 +17,7 @@ function Game() {
   this.players = {};
   this.commands = {};
   setInterval(function () {_this.emit('tick');}, 1000);
-  
+
   this.display = new WorldDisplay(this);
 }
 // We inherit from node's event emmiter to allow events on the game,
@@ -132,7 +132,8 @@ function Room(game, id) {
   this.description = "This is a room";
   this.image = null;
   this.exits = {};
-  
+  this.items = [];
+
   this.display = new RoomDisplay(this);
 }
 
