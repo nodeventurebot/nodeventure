@@ -17,7 +17,6 @@ function Game() {
   this.players = {};
   this.commands = {};
   setInterval(function () {_this.emit('tick');}, 1000);
-  
   this.display = new Display(this, this.broadcast);
 }
 // We inherit from node's event emmiter to allow events on the game,
@@ -41,7 +40,12 @@ _.extend(Game.prototype, {
   // Create or return a room. Usuaully used by the fascade in loader.js
   createRoom: function (id, options) {
     var room = this.rooms[id] = this.rooms[id] || new Room(this,id);
-    _.extend(room, options);
+    _(room).chain()
+      .extend(options)
+      .defaults({
+        items: []
+      })
+      .value();
     return room;
   },
   createCommand: function (command, description, fun) {
@@ -134,6 +138,7 @@ function Room(game, id) {
   this.exits = {};
   
   this.display = new Display(this, this.broadcast);
+  this.items = [];
 }
 
 _.extend(Room.prototype, {
