@@ -13,10 +13,11 @@ command('get', 'Pick up an item from the current room.', function (rest, player,
 
 handler('get:*', function (game, player, item) {
   // remove item from room & add to player inventory
-  player.write("You pick up the " + rest);
-  player.getCurrentRoom().broadcast(player.name + ' picks up the ' + rest, player);
+  var itemName = item.name;
+  player.write("You pick up the " + itemName);
+  player.getCurrentRoom().broadcast(player.name + ' picks up the ' + itemName, player);
   player.getCurrentRoom().items = _.without(player.getCurrentRoom().items, item);
-  game.emit("invget:"+item.name);
+  game.emit("invget:"+itemName);
   player.inventory.push(item);
 });
 
