@@ -8,18 +8,21 @@ room('home', {
 
 room('beige', {
   description: "This room is daubed in beige. You start feeling sleepy.",
+  image: "http://cabinetmagazine.org/issues/2/beige.jpg",
   exits: { east: 'home' },
   items: []
 });
 
 room('magnolia', {
   description: "This room is daubed in magnolia. You stare at it for a while.",
+  image: "http://api.ning.com/files/4JDD2fK0Tk*YIVPzwCg1u5FXz-WiHOaN-nAhloBxKg*QKhdzjVO7l3M1tXGZSeZVuk7cQoy6jRG-LJ*iED4AECnCTGIVFcsT/Miss_Magnolia.jpg",
   exits: { west: 'home' },
 });
 
 item('beige', 'brush', 60, {
   short: 'a brush',
   name: 'brush',
+  image: "http://www.paint-plus.com/contact/images/contact_brush.gif",
   description: 'A brush. it is branded with a \'B&Q\' logo. There is beige paint on it'
 });
 

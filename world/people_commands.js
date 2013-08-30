@@ -12,7 +12,10 @@ handler('enterRoom', function (player, room, game) {
 });
 
 handler("describeItem:*", function (game, player, item) {
-
+  if (item.image) {
+    // TODO: Position so we can see more than one item
+    player.display.show(item.image, item.name, {width: "50%", height: "50%"});
+  }
 });
 
 handler('leaveRoom', function (player, room, game) {

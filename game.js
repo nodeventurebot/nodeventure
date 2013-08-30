@@ -18,7 +18,7 @@ function Game() {
   this.commands = {};
   setInterval(function () {_this.emit('tick');}, 1000);
   
-  this.display = new WorldDisplay(this);
+  this.display = new Display(this, this.broadcast);
 }
 // We inherit from node's event emmiter to allow events on the game,
 // world modules listen to them via the Fascade in loader.js which
@@ -133,7 +133,7 @@ function Room(game, id) {
   this.image = null;
   this.exits = {};
   
-  this.display = new RoomDisplay(this);
+  this.display = new Display(this, this.broadcast);
 }
 
 _.extend(Room.prototype, {
@@ -181,7 +181,7 @@ function Player(game, name) {
   this.inventory = [];
   this.health = 100;
 
-  this.display = new PlayerDisplay(this);
+  this.display = new Display(this, this.write);
 }
 util.inherits(Player, events.EventEmitter);
 
@@ -229,53 +229,25 @@ _.extend(Player.prototype, {
 });
 
 
-function BaseDisplay() {
+function Display(object, broadcast) {
+  this.object = object;
+  this.broadcast = broadcast;
 }
 
-_.extend(BaseDisplay.prototype, {
+_.extend(Display.prototype, {
   eval: function (code) {
     if (_.isFunction(code)) {
       code = "(" + code.toString() + ")(display)";
     }
     this._command("eval", [code]);
+  },
+  _command: function (command, args) {
+    this.broadcast.call(this.object, command, args);
   }
 });
 
 _.each(["show", "reset"], function (command) {
-  BaseDisplay.prototype[command] = function () {
+  Display.prototype[command] = function () {
     this._command(command, _.toArray(arguments));
   };
-});
-
-function WorldDisplay(game) {
-  this._game = game;
-}
-util.inherits(WorldDisplay, BaseDisplay);
-
-_.extend(WorldDisplay.prototype, {
-  _command: function (cmd, args) {
-    this._game.broadcast({display: {command: cmd, arguments: args}});
-  }
-});
-
-function RoomDisplay(room) {
-  this._room = room;
-}
-util.inherits(RoomDisplay, BaseDisplay);
-
-_.extend(RoomDisplay.prototype, {
-  _command: function (cmd, args) {
-    this._room.broadcast({display: {command: cmd, arguments: args}});
-  }
-});
-
-function PlayerDisplay(player) {
-  this._player = player;
-}
-util.inherits(PlayerDisplay, BaseDisplay);
-
-_.extend(PlayerDisplay.prototype, {
-  _command: function (cmd, args) {
-    this._player.write({display: {command: cmd, arguments: args}});
-  }
 });
