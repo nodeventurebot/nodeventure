@@ -66,6 +66,10 @@ command('inventory', "Display a list of all the items you're carrying.", functio
   });
 });
 
+command('inv', "Display a list of all the items you're carrying.", function (rest, player, game) {
+  player.execute('inventory');
+});
+
 command('i', "Display a list of all the items you're carrying.", function (rest, player, game) {
   player.execute('inventory');
 });
