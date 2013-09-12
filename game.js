@@ -247,7 +247,7 @@ _.extend(Display.prototype, {
     this._command("eval", [code]);
   },
   _command: function (command, args) {
-    this.broadcast.call(this.object, command, args);
+    this.broadcast.call(this.object, {display: {command: command, arguments: args}});
   }
 });
 
